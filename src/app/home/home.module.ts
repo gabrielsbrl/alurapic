@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { SignInComponent } from './signin/signin.component';
 import { ReactiveFormsModule, FormsModule }  from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+import { SignInComponent } from './signin/signin.component';
+import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 import { SignupComponent } from './signup/signup.component';
+import { VMessageSuccessModule } from '../shared/components/vmessage-success/vmessage-success.module';
 
 @NgModule({
     declarations: [ 
@@ -13,10 +16,12 @@ import { SignupComponent } from './signup/signup.component';
     ],
     imports: [ 
         CommonModule, 
+        RouterModule,
         FormsModule,
         ReactiveFormsModule,
         VMessageModule,
-        RouterModule
+        HttpClientModule,
+        VMessageSuccessModule
     ]
 })
 export class HomeModule { }

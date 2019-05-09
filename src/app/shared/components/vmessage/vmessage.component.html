@@ -1,1 +1,3 @@
-<small class="text-danger d-block mt-2">{{ text }}</small> 
+<small class="text-danger d-block mt-2" *ngIf="condition">
+    <ng-content></ng-content>
+</small> 
