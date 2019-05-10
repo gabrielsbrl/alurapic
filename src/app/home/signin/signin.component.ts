@@ -10,7 +10,9 @@ import { PlatformDetectorService } from '../../core/plataform-detector/platform-
 export class SignInComponent implements OnInit {
     
     loginForm: FormGroup;
-    @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
+
+    @ViewChild('userNameInput') 
+    userNameInput: ElementRef<HTMLInputElement>;
     
     constructor(
         private formBuilder: FormBuilder,
@@ -23,6 +25,8 @@ export class SignInComponent implements OnInit {
             userName: ['', Validators.required],
             password: ['', Validators.required]
         });
+        //Set focus to the username fild of login form
+        this.userNameInput.nativeElement.focus();
     } 
 
     login() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowerCaseValidator } from '../../shared/validators/lower-case.validator';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
     
     public signupForm: FormGroup;
+
+    @ViewChild('emailInput')
+    public emailInput: ElementRef<HTMLInputElement>;
     
     constructor(
         private _formBuilder: FormBuilder,
@@ -55,6 +58,8 @@ export class SignupComponent implements OnInit {
                 ]
             ]
         });
+        //Set focus to the e-mail field
+        this.emailInput.nativeElement.focus();
     }
 
     signup() {

@@ -5,22 +5,18 @@ import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
-import { SignInComponent } from './home/signin/signin.component';
-import { AuthGuard } from './core/auth/auth.guard';
-import { SignupComponent } from './home/signup/signup.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+    },
     { 
         //validate if the user is logged in to dont show this route content
-        path: '',
-        component: SignInComponent,
-        canActivate: [ AuthGuard ]
-    },    
-    {
-        path: 'signup',
-        component: SignupComponent,
-        canActivate: [ AuthGuard ]
-    },
+        path: 'home',
+        loadChildren: './home/home.module#HomeModule'
+    },        
     { 
         path: 'user/:userName', 
         component: PhotoListComponent,
@@ -40,6 +36,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [ 
+        //Caso seja necessario, basta ativar o hash para poder trabalhar com roteamento
+        //em qualquer servidor -> RouterModule.forRoot(routes, { useHash: true });
         RouterModule.forRoot(routes) 
     ],
     exports: [ RouterModule ]

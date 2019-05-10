@@ -8,11 +8,14 @@ import { SignInComponent } from './signin/signin.component';
 import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 import { SignupComponent } from './signup/signup.component';
 import { VMessageSuccessModule } from '../shared/components/vmessage-success/vmessage-success.module';
+import { HomeComponent } from './home.component';
+import { HomeRoutingModule } from './home.routing.module';
 
 @NgModule({
     declarations: [ 
         SignInComponent,
-        SignupComponent 
+        SignupComponent,
+        HomeComponent
     ],
     imports: [ 
         CommonModule, 
@@ -21,7 +24,8 @@ import { VMessageSuccessModule } from '../shared/components/vmessage-success/vme
         ReactiveFormsModule,
         VMessageModule,
         HttpClientModule,
-        VMessageSuccessModule
+        VMessageSuccessModule,
+        HomeRoutingModule
     ]
 })
 export class HomeModule { }

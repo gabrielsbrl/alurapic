@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { PhotosModule } from './photos/photos.module';
 import { AppRoutingModule } from './app.routing.module';
 import { ErrorsModule } from './errors/errors.module';
-import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { CoreModule } from './core/core.module';
     PhotosModule,
     AppRoutingModule,
     ErrorsModule,
-    HomeModule,
     CoreModule,
     HttpClientModule
   ],

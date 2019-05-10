@@ -4,7 +4,7 @@
 <form [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
     <!--Atraves do formControlName identificamos os inputs-->
     <div class="form-group">
-        <input formControlName="email" placeholder="email" class="form-control" autofocus >
+        <input #emailInput formControlName="email" placeholder="email" class="form-control" autofocus >
         <!--Validation Message-->
         <ap-vmessage [condition]="signupForm.get('email').errors?.required">
             E-mail is required!
