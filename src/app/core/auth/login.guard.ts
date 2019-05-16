@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: "root" })
-export class AuthGuard implements CanActivate {
-
+export class LoginGuard implements CanActivate {
+    
     constructor(
         private _userService: UserService,
         private _router: Router
@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot, // captura a rota atual
         state: RouterStateSnapshot // captura o estado atual da rota
     ): boolean | Observable<boolean> | Promise<boolean> {
-        if(!this._userService.isLogged()) {
-            this._router.navigate(['']);
+        if(this._userService.isLogged()) {
+            this._router.navigate(['user', this._userService.getUserName()]);
             return false;
         }
         return true;

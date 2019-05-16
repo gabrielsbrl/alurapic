@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { AuthGuard } from '../core/auth/auth.guard';
+import { LoginGuard } from '../core/auth/login.guard';
 import { SignInComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -11,15 +11,21 @@ const routes: Routes = [
         //validate if the user is logged in to dont show this route content
         path: '',
         component: HomeComponent,
-        canActivate: [ AuthGuard ],
+        canActivate: [ LoginGuard ],
         children: [ //Rotas dos componentes filhos deste
             {
                 path: '',
-                component: SignInComponent
+                component: SignInComponent,
+                data: {
+                    title: 'Sign in'
+                }
             },
             {
                 path: 'signup',
                 component: SignupComponent,
+                data: {
+                    title: 'Sign out'
+                }
             }
         ]
     }

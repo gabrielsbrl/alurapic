@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+
 import { TokenService } from '../token/token.service';
 import { UserService } from 'src/app/user/user.service';
-
-const API_URL = 'http://localhost:3000';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthService {
 
     return this._http
       .post(
-        API_URL + '/user/login', 
+        environment.apiUrl + '/user/login', 
         { userName, password }, 
         { observe: 'response'} 
       )

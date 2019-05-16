@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Photo } from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
+import { LoadingService } from 'src/app/shared/components/load/loading.service';
 
 @Component({
   selector: 'app-photo-list',
@@ -19,12 +20,17 @@ export class PhotoListComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private _loadingService: LoadingService
   ) { }
 
   ngOnInit(): void {
-    this.userName = this.activatedRoute.snapshot.params.userName;
-    this.photos = this.activatedRoute.snapshot.data['photos'];
+    //Deve mudar para garantir que o valor capturado da rota e o mais atualizado
+    this.activatedRoute.params
+      .subscribe(params => {
+        this.userName = params.userName;
+        this.photos = this.activatedRoute.snapshot.data['photos'];
+      })
   }
 
   load() {
