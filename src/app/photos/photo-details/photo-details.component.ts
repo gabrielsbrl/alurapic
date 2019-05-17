@@ -44,7 +44,13 @@ export class PhotoDetailsComponent implements OnInit {
             .subscribe(
                 () => {
                     this.alertService.success('Photo removed', false);
-                    this._router.navigate(['/user', this._userService.getUserName()])
+                    /**
+                     * Replace url garante que caso o usuário de um back no navegador
+                     * que ele nao consiga acessar a rota que expoe os detalhes da foto,
+                     * ja que a foto nao existe mais e nao faz sentido voltar para ela,
+                     * ele basicamente exclui a rota do historico de navegação
+                     */
+                    this._router.navigate(['/user', this._userService.getUserName()], { replaceUrl: true })
                 },
                 err => {
                     console.log(err);

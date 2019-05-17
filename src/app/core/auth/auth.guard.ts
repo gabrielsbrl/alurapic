@@ -16,7 +16,14 @@ export class AuthGuard implements CanActivate {
         state: RouterStateSnapshot // captura o estado atual da rota
     ): boolean | Observable<boolean> | Promise<boolean> {
         if(!this._userService.isLogged()) {
-            this._router.navigate(['']);
+            this._router.navigate(
+                [''],
+                {
+                    queryParams: {
+                        fromUrl: state.url // captura a rota buscada pelo usuario, para mostra-la quando ele logar
+                    }
+                }
+            );
             return false;
         }
         return true;

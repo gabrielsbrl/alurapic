@@ -5,6 +5,7 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
 import { SignUpService } from './signup.service';
 import { User } from './User';
 import { Router } from '@angular/router';
+import { userNamePasswordValidator } from './username-password.validator';
 
 @Component({
     templateUrl: './signup.component.html'
@@ -57,18 +58,23 @@ export class SignupComponent implements OnInit {
                     Validators.maxLength(14)
                 ]
             ]
+        },
+        {
+            validator: userNamePasswordValidator
         });
         //Set focus to the e-mail field
         this.emailInput.nativeElement.focus();
     }
 
     signup() {
-        let user: User = this.signupForm.getRawValue();
-        this._signupService.signup(user)
-            .subscribe(
-                success => this._router.navigate(['']),
-                (error: any) => console.log("Error: ", error)
-            );
+        if(this.signupForm.valid && !this.signupForm.pending) {
+            let user: User = this.signupForm.getRawValue();
+            this._signupService.signup(user)
+                .subscribe(
+                    success => this._router.navigate(['']),
+                    (error: any) => console.log("Error: ", error)
+                );
+        }
     }
 
 }
